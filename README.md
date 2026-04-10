@@ -1,5 +1,7 @@
 # Pimcore FormBuilder
 
+Fork of dachcom-digital/formbuilder with fixes for support pimcore 12
+
 ***
 
 > [!IMPORTANT]
