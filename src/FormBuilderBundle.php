@@ -31,6 +31,7 @@ use FormBuilderBundle\DependencyInjection\CompilerPass\OutputWorkflowFunnelLayer
 use FormBuilderBundle\DependencyInjection\CompilerPass\RuntimeDataProviderPass;
 use FormBuilderBundle\DependencyInjection\CompilerPass\StorageProviderPass;
 use FormBuilderBundle\Doctrine\Type\FormBuilderFieldsType;
+use FormBuilderBundle\Doctrine\Type\FormBuilderSerializedType;
 use FormBuilderBundle\Factory\FormDefinitionFactoryInterface;
 use FormBuilderBundle\Tool\Install;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
@@ -50,6 +51,10 @@ class FormBuilderBundle extends AbstractPimcoreBundle
 
     private function addDBALTypes(): void
     {
+        if (!Type::hasType(FormBuilderSerializedType::FORM_BUILDER_SERIALIZED)) {
+            Type::addType(FormBuilderSerializedType::FORM_BUILDER_SERIALIZED, FormBuilderSerializedType::class);
+        }
+
         if (Type::hasType('form_builder_fields')) {
             return;
         }
