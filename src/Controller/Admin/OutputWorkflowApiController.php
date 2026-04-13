@@ -18,13 +18,15 @@ use FormBuilderBundle\Manager\FormDefinitionManager;
 use FormBuilderBundle\Model\FormDefinitionInterface;
 use FormBuilderBundle\Registry\ApiProviderRegistry;
 use FormBuilderBundle\Registry\FieldTransformerRegistry;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Pimcore\Controller\Traits\JsonHelperTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OutputWorkflowApiController extends AdminAbstractController
+class OutputWorkflowApiController extends AbstractController
 {
+    use JsonHelperTrait;
     public function __construct(
         protected FormDefinitionManager $formDefinitionManager,
         protected ExtJsFormBuilder $extJsFormBuilder,
@@ -73,7 +75,7 @@ class OutputWorkflowApiController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success'       => true,
             'configuration' => [
                 'formFieldDefinitions' => $extJsFormFields,
@@ -113,7 +115,7 @@ class OutputWorkflowApiController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success' => true,
             'types'   => $data
         ]);

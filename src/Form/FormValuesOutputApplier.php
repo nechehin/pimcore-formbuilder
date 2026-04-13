@@ -26,10 +26,6 @@ use FormBuilderBundle\Transformer\Target\TargetAwareOutputTransformer;
 use FormBuilderBundle\Transformer\Target\TargetAwareValue;
 use Symfony\Component\Form\FormInterface;
 
-/**
- * @method getProperty($option)
- * @method hasProperty($option)
- */
 class FormValuesOutputApplier implements FormValuesOutputApplierInterface
 {
     protected ?string $channel;

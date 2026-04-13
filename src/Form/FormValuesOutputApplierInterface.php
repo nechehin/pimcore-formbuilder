@@ -15,10 +15,6 @@ namespace FormBuilderBundle\Form;
 
 use Symfony\Component\Form\FormInterface;
 
-/**
- * @method getProperty($option)
- * @method hasProperty($option)
- */
 interface FormValuesOutputApplierInterface
 {
     public const FIELD_TYPE_SIMPLE = 'simple';

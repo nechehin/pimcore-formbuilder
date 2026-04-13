@@ -17,7 +17,8 @@ use FormBuilderBundle\OutputWorkflow\Channel\Funnel\Action\FunnelActionInterface
 use FormBuilderBundle\OutputWorkflow\Channel\Funnel\Layer\FunnelLayerInterface;
 use FormBuilderBundle\Registry\FunnelActionRegistry;
 use FormBuilderBundle\Registry\FunnelLayerRegistry;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Pimcore\Controller\Traits\JsonHelperTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -25,8 +26,9 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class OutputWorkflowFunnelController extends AdminAbstractController
+class OutputWorkflowFunnelController extends AbstractController
 {
+    use JsonHelperTrait;
     public function __construct(
         protected TranslatorInterface $translator,
         protected SerializerInterface $serializer,
@@ -74,7 +76,7 @@ class OutputWorkflowFunnelController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success'      => true,
             'funnelLayers' => $data
         ]);
@@ -96,7 +98,7 @@ class OutputWorkflowFunnelController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success'       => true,
             'funnelActions' => $data
         ]);

@@ -20,12 +20,12 @@ use FormBuilderBundle\MailEditor\Widget\MailEditorWidgetInterface;
 use FormBuilderBundle\Manager\FormDefinitionManager;
 use FormBuilderBundle\Model\Fragment\EntityToArrayAwareInterface;
 use FormBuilderBundle\Registry\MailEditorWidgetRegistry;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class MailEditorController extends AdminAbstractController
+class MailEditorController extends AbstractController
 {
     public function __construct(
         protected MailEditorWidgetRegistry $mailEditorWidgetRegistry,

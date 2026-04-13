@@ -20,13 +20,15 @@ use FormBuilderBundle\Manager\FormDefinitionManager;
 use FormBuilderBundle\Manager\OutputWorkflowManager;
 use FormBuilderBundle\Model\FormDefinitionInterface;
 use FormBuilderBundle\Model\OutputWorkflowInterface;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Pimcore\Controller\Traits\JsonHelperTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class OutputWorkflowController extends AdminAbstractController
+class OutputWorkflowController extends AbstractController
 {
+    use JsonHelperTrait;
     public function __construct(
         protected Configuration $configuration,
         protected FormFactoryInterface $formFactory,
@@ -66,7 +68,7 @@ class OutputWorkflowController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson($mainItems);
+        return $this->jsonResponse($mainItems);
     }
 
     public function getOutputWorkflowListAction(Request $request, int $formId): JsonResponse
@@ -89,7 +91,7 @@ class OutputWorkflowController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success'         => true,
             'outputWorkflows' => $outputWorkflows
         ]);
@@ -119,7 +121,7 @@ class OutputWorkflowController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson($data);
+        return $this->jsonResponse($data);
     }
 
     public function addOutputWorkflowAction(Request $request, int $formId): JsonResponse
@@ -154,7 +156,7 @@ class OutputWorkflowController extends AdminAbstractController
             }
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success' => $success,
             'message' => $message,
             'id'      => $id,
@@ -219,7 +221,7 @@ class OutputWorkflowController extends AdminAbstractController
             $message = implode('<br>', $errors);
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success' => $success,
             'message' => $message,
             'id'      => $outputWorkflowId,
@@ -238,7 +240,7 @@ class OutputWorkflowController extends AdminAbstractController
             $message = sprintf('Error while deleting output workflow with id %d. Error was: %s', $outputWorkflowId, $e->getMessage());
         }
 
-        return $this->adminJson([
+        return $this->jsonResponse([
             'success' => $success,
             'message' => $message,
             'id'      => $outputWorkflowId,

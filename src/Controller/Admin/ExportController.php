@@ -19,8 +19,8 @@ use FormBuilderBundle\Model\FormDefinitionInterface;
 use FormBuilderBundle\Model\FormFieldDefinitionInterface;
 use FormBuilderBundle\Model\OutputWorkflowInterface;
 use FormBuilderBundle\Tool\ImportExportProcessor;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Pimcore\Model\Tool\Email;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
-class ExportController extends AdminAbstractController
+class ExportController extends AbstractController
 {
     public const NO_DATA_MESSAGE = 'NO_CSV_DATA_FOUND';
 
